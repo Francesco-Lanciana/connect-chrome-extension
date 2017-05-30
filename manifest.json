@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Connect",
+  "version": "1.0",
+
+  "description": "Allows seamless linking of content",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icons/connect-19x19.png",
+    "default_title": "Connect",
+    "default_popup": "popup.html"
+  },
+
+  "author": "Francesco Lanciana",
+
+  "permissions": [
+    "activeTab",
+    "browsingData",
+    "https://ajax.googleapis.com/"
+  ]
+}
