@@ -1,10 +1,10 @@
 {
   "name": "connect",
   "version": "1.0.0",
-  "description": "Chrome extension that allows seamless linking of related content",
+  "description": "Chrome extension that allows seamless linking of related web pages",
   "main": "./src/popup.js",
   "scripts": {
-    "build": "webpack --env production",
+    "build": "npm version minor && webpack --env production",
     "lint:js": "eslint app/ webpack.*.js --ignore-path .gitignore --cache -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -48,6 +48,7 @@
     "stylelint-scss": "^1.4.4",
     "webpack": "^2.5.1",
     "webpack-dashboard": "^0.4.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "webpack-version-file-plugin": "^0.2.2"
   }
 }

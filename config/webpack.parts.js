@@ -7,6 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const CrxPlugin = require('crx-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const VersionFilePlugin = require('webpack-version-file-plugin');
 
 
 exports.lintJavascript = ({ include, exclude, options } = {}) => ({
@@ -201,18 +202,18 @@ exports.setFreeVariable = (key, value) => {
     ],
   };
 };
-//
-// exports.generateCRX = ({keyPath, contentPath, outputPath}) => ({
-//   plugins: [
-//     new CrxPlugin({
-//       keyFile: keyPath,
-//       contentPath,
-//       outputPath,
-//       name: 'connect-chrome-ext',
-//     }),
-//   ],
-// });
-//
+
+exports.generateCRX = ({keyPath, contentPath, outputPath}) => ({
+  plugins: [
+    new CrxPlugin({
+      keyFile: keyPath,
+      contentPath,
+      outputPath,
+      name: 'connect-chrome-ext',
+    }),
+  ],
+});
+
 exports.copySeperateSourceFiles = ({ locations, ignore }) => {
   locations.map((location) => ({
     from: location.from,
@@ -232,3 +233,13 @@ exports.copySeperateSourceFiles = ({ locations, ignore }) => {
     ],
   };
 };
+
+exports.versionControl = ({ packageFile, template, outputFile }) => ({
+  plugins: [
+    new VersionFilePlugin({
+      packageFile,
+      template,
+      outputFile,
+    }),
+  ],
+});

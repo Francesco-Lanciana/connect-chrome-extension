@@ -12,7 +12,7 @@ exports.config = ({ context, entry, buildPath }) => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack Demo',
+      template: './popup.html',
       filename: 'popup.html',
     }),
     new FriendlyErrorsWebpackPlugin(),

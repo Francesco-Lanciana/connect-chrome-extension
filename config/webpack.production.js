@@ -62,15 +62,20 @@ const config = merge([
   ),
   parts.copySeperateSourceFiles({
     locations: [
-      {from: path.join(PATHS.src, 'manifest.json')},
+      //{from: path.join(PATHS.src, 'manifest.json')},
       {from: path.join(PATHS.src,'./icons/**.png')}],
     //ignore: '!**.json',
   }),
-  // parts.generateCRX({
-  //   keyPath: path.join(__dirname, '../src/key.pem'),
-  //   contentPath: PATHS.build,
-  //   outputPath: path.join(__dirname, '../packed_build'),
-  // }),
+  parts.generateCRX({
+    keyPath: '../key.pem',
+    contentPath: PATHS.build,
+    outputPath: path.join(__dirname, '../packed_build'),
+  }),
+  parts.versionControl({
+    packageFile: path.join(__dirname, '../package.json'),
+    template: path.join(PATHS.src, 'manifest.json'),
+    outputFile: path.join(__dirname, 'manifest.json'),
+  }),
 ]);
 
 // const getLocation = (relToRootLoc) => {
