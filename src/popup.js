@@ -13,7 +13,7 @@ function getCurrentTabUrl(callback) {
   // https://developer.chrome.com/extensions/tabs#method-query
   var queryInfo = {
     active: true,
-    currentWindow: true
+    currentWindow: true,
   };
 
   chrome.tabs.query(queryInfo, function(tabs) {
