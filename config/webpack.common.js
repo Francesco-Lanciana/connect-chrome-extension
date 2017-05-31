@@ -1,9 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-exports.config = ({ entry, buildPath }) => ({
+exports.config = ({ context, entry, buildPath }) => ({
+  context,
   entry: {
-    app: entry,
+    popup: entry,
   },
   output: {
     path: buildPath,
@@ -12,6 +13,7 @@ exports.config = ({ entry, buildPath }) => ({
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Webpack Demo',
+      filename: 'popup.html',
     }),
     new FriendlyErrorsWebpackPlugin(),
   ],

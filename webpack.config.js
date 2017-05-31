@@ -13,7 +13,8 @@ const PATHS = {
 
 const commonConfig = merge([
   common.config({
-    entry: path.join(PATHS.src, 'popup.js'),
+    context: PATHS.src,
+    entry: './popup.js',
     buildPath: PATHS.build,
   }),
   parts.lintJavascript({

@@ -63,7 +63,7 @@ const config = merge([
   parts.copySeperateSourceFiles({
     locations: [
       {from: path.join(PATHS.src, 'manifest.json')},
-      {from: path.join(PATHS.src,'./icons/**.png'), to: 'icons/'}],
+      {from: path.join(PATHS.src,'./icons/**.png')}],
     //ignore: '!**.json',
   }),
   // parts.generateCRX({
