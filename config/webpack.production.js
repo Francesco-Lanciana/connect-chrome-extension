@@ -5,10 +5,9 @@ const glob = require('glob');
 const parts = require('./webpack.parts');
 
 const PATHS = {
-  src: path.join(__dirname, '../src'),
+  app: path.join(__dirname, '../app'),
   build: path.join(__dirname, '../build'),
 };
-console.log(PATHS.src);
 
 const config = merge([
   {
@@ -37,7 +36,7 @@ const config = merge([
   }),
   parts.extractSCSS({ exclude: /node_modules/ }),
   parts.purifyCSS({
-    paths: glob.sync(`${PATHS.src}/**/*.js`, {nodir: true}),
+    paths: glob.sync(`${PATHS.app}/**/*.js`, {nodir: true}),
   }),
   parts.loadImages({
     options: {
@@ -53,7 +52,7 @@ const config = merge([
     },
   }),
   parts.loadJavaScript({
-    include: PATHS.src,
+    include: PATHS.app,
     //exlude: /(node_modules|bower_components)/,
   }),
   parts.setFreeVariable(
@@ -62,8 +61,8 @@ const config = merge([
   ),
   parts.copySeperateSourceFiles({
     locations: [
-      //{from: path.join(PATHS.src, 'manifest.json')},
-      {from: path.join(PATHS.src,'./icons/**.png')}],
+      {from: path.join(PATHS.app, 'manifest.json')},
+      {from: 'popup/icons/**.png'}],
     //ignore: '!**.json',
   }),
   parts.generateCRX({
@@ -71,15 +70,14 @@ const config = merge([
     contentPath: PATHS.build,
     outputPath: path.join(__dirname, '../packed_build'),
   }),
-  parts.versionControl({
-    packageFile: path.join(__dirname, '../package.json'),
-    template: path.join(PATHS.src, 'manifest.json'),
-    outputFile: path.join(__dirname, 'manifest.json'),
-  }),
+  // parts.generateManifest({
+  //   entry: path.join(PATHS.app, 'manifest.json'),
+  //   output: './',
+  // }),
 ]);
 
 // const getLocation = (relToRootLoc) => {
-//   return path.join(PATHS.src, relToRootLoc);
+//   return path.join(PATHS.app, relToRootLoc);
 // };
 
 module.exports = () => {

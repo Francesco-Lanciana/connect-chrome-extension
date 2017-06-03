@@ -9,11 +9,13 @@ module.exports = {
     'promise',
     'compat',
     'import',
+    'react',
   ],
   extends: [
     'eslint:recommended',
     'plugin:promise/recommended',
     'plugin:import/errors',
+    'plugin:react/recommended',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -29,5 +31,6 @@ module.exports = {
     'no-unused-vars': ['warn'],
     'no-console': 0,
     'compat/compat': 2,
+    'import/no-unresolved': 0,
   },
 };

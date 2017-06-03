@@ -16,6 +16,7 @@ function getCurrentTabUrl(callback) {
     currentWindow: true,
   };
 
+  // eslint-disable-next-line
   chrome.tabs.query(queryInfo, function(tabs) {
     // chrome.tabs.query invokes the callback with a list of tabs that match the
     // query. When the popup is opened, there is certainly a window and at least

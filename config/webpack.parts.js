@@ -7,8 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const CrxPlugin = require('crx-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const VersionFilePlugin = require('webpack-version-file-plugin');
-
+const ChromeDevPlugin = require('chrome-dev-webpack-plugin');
 
 exports.lintJavascript = ({ include, exclude, options } = {}) => ({
   module: {
@@ -219,7 +218,6 @@ exports.copySeperateSourceFiles = ({ locations, ignore }) => {
     from: location.from,
     to: location.to !== undefined ? location.to : null,
   }));
-  console.log(locations);
 
   return {
     plugins: [
@@ -234,12 +232,9 @@ exports.copySeperateSourceFiles = ({ locations, ignore }) => {
   };
 };
 
-exports.versionControl = ({ packageFile, template, outputFile }) => ({
-  plugins: [
-    new VersionFilePlugin({
-      packageFile,
-      template,
-      outputFile,
-    }),
-  ],
+exports.generateManifest = ({ entry, output }) => ({
+  plugins: [new ChromeDevPlugin({
+    entry,
+    output,
+  })],
 });

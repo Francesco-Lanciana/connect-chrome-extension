@@ -7,22 +7,37 @@ const devConfig = require('./config/webpack.development');
 const prodConfig = require('./config/webpack.production');
 
 const PATHS = {
-  src: path.join(__dirname, 'src'),
+  app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
 };
 
 const commonConfig = merge([
   common.config({
-    context: PATHS.src,
-    entry: './popup.js',
+    context: PATHS.app,
+    entry: 'popup/popup.js',
     buildPath: PATHS.build,
   }),
   parts.lintJavascript({
-    include: PATHS.src,
+    include: PATHS.app,
     options: {
       emitWarning: true,
     },
   }),
+  {
+    resolve: {
+      modules: [
+        'node_modules',
+        path.join(__dirname, 'app'),
+        path.join(__dirname, 'app/graph/components'),
+      ],
+      extensions: ['.js', '.json', '.scss'],
+      alias: {
+        'app': path.join(__dirname, 'app'),
+        'popup': path.join(__dirname, 'app/popup'),
+        'graph': path.join(__dirname, 'app/graph'),
+      },
+    },
+  },
 ]);
 
 
